@@ -1935,7 +1935,15 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 
 4. ```static_cast```与```dynamic_cast```：前者允许向上转换和向下转换，还允许枚举类型和整型之间以及数值类型之间的转换；后者只允许沿类层次结构向上转换
 
+# 16 string类和标准模板库
 
+## 16.1 string类
+
+1. 7种构造函数
+
+2. C++11新增两种，```string(string && str) no expect```和```string(initializer_list<char>il)```
+
+3. 
 
 
 
