@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
             printf("i: %d\t", i);
             if (FD_ISSET(i, &cpy_reads))
             {
-                printf("i: %d \n", i);
+                // printf("i: %d \n", i);
                 if (i == serv_sock)
                 {
                     addr_len = sizeof(clnt_addr);
