@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
     for (int i = wek; i != f; i++)
     {
         cout << i << endl;
-        cout << wek + 5 << endl;
+        cout << wek + s << endl;
         cout << "---haha---" << endl;
     }
     return 0;
