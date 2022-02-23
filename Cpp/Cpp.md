@@ -11,13 +11,13 @@
 ## 4.2 字符串
 
 ```cpp
-//可以把字符数组当字符串，但不建议
-char dogs[]{'1', '2', '3', '4', '5', ' ', '6', '7'};     //直到'\0'才停止
-char cats[]{'1', '2', '3', '\0', '4', '5', '6', '7'};   //遇到'\0'就停止
+// 可以把字符数组当字符串，但不建议
+char dogs[]{'1', '2', '3', '4', '5', ' ', '6', '7'};     // 直到'\0'才停止
+char cats[]{'1', '2', '3', '\0', '4', '5', '6', '7'};   // 遇到'\0'就停止
 cout:
     dogs: 12345 67123
     cats: 123
-char birds[] = "new birds"; //字符串长度包括结尾的'\0'，编译器自动添加
+char birds[] = "new birds"; // 字符串长度包括结尾的'\0'，编译器自动添加
 cout << "size of birds: " << sizeof birds << endl;
 ```
 
@@ -36,7 +36,7 @@ cout << "size of birds: " << sizeof birds << endl;
     wchar_t title[] = L"title";
     char16_t name[] = u"name";
     char32_t car[] = U"car";
-    R"(title name car)" //原始字符串，"()"界定符，显示)"时可以用"+*(和)+*"代替默认定界符
+    R"(title name car)" // 原始字符串，"()"界定符，显示)"时可以用"+*(和)+*"代替默认定界符
     ```
 
 ## 4.4 结构体
@@ -95,13 +95,13 @@ cout << "size of birds: " << sizeof birds << endl;
 
     ```cpp
     int* pt;
-    pt = (int*) 0xB8000000; //给指针赋值指定地址
+    pt = (int*) 0xB8000000; // 给指针赋值指定地址
     ```
 
 5. new 
 
     ```cpp
-        int *pt = new int; //左边向编译器指明数据大小，右边申请适当大小
+        int *pt = new int; // 左边向编译器指明数据大小，右边申请适当大小
     ```
 
 6. 变量：存储在stack中；new：heap或free store
@@ -112,7 +112,7 @@ cout << "size of birds: " << sizeof birds << endl;
     delete ps;
     int p = 5;
     int* pt = &p;
-    delete pt;  //wrong
+    delete pt;  // wrong
     ```
 
     1. 这将释放ps指向的内存，但不会删除ps，可以将ps重新指向新的内存块
@@ -150,12 +150,12 @@ cout << "size of birds: " << sizeof birds << endl;
 1. C++将数组名解释为第一个元素的地址
     ```cpp
     double wages[3] {1000., 2000., 300.};
-    double* pw = wages;         //
-    double* ps = &wages[0];     //两者等价
-    cout << "pw: " << pw << endl;       //pw: 0x61fe00
-    cout << "ps: " << ps << endl;       //ps: 0x61fe00
-    cout << "*pw: " << *pw << endl;     //*pw: 1000
-    cout << "*ps: " << *ps << endl;     //*ps: 1000
+    double* pw = wages;         // 
+    double* ps = &wages[0];     // 两者等价
+    cout << "pw: " << pw << endl;       // pw: 0x61fe00
+    cout << "ps: " << ps << endl;       // ps: 0x61fe00
+    cout << "*pw: " << *pw << endl;     // *pw: 1000
+    cout << "*ps: " << *ps << endl;     // *ps: 1000
     ```
 
 2. 指针变量+1，其增加的值等于指向的类型占用的字节数
@@ -164,11 +164,11 @@ cout << "size of birds: " << sizeof birds << endl;
 
 4. 数组的地址
     ```cpp
-    short tell[10];                     //数值上tell = &tell，但实际上tell != &tell
-    cout << "tell: " << tell << endl;           //tell: 0x61fe00        &tell[0]
-    cout << "&tell: " << &tell << endl;         //&tell: 0x61fe00       &tell
-    cout << "tell + 1: " << tell + 1 << endl;   //tell + 1: 0x61fe02
-    cout << "&tell + 1: " << &tell + 1 << endl; //&tell + 1: 0x61fe14
+    short tell[10];                     // 数值上tell = &tell，但实际上tell != &tell
+    cout << "tell: " << tell << endl;           // tell: 0x61fe00        &tell[0]
+    cout << "&tell: " << &tell << endl;         // &tell: 0x61fe00       &tell
+    cout << "tell + 1: " << tell + 1 << endl;   // tell + 1: 0x61fe02
+    cout << "&tell + 1: " << &tell + 1 << endl; // &tell + 1: 0x61fe14
 
     ??? short (*pas)[20] = &tell
     ```
@@ -182,7 +182,7 @@ cout << "size of birds: " << sizeof birds << endl;
     float treacle[10];
     float* p = treacle;
     cout << *p << *(p+9) << endl; 
-    cout << p[0] << p[9] <<endl;    //等价
+    cout << p[0] << p[9] <<endl;    // 等价
     ```
 
 6. 指针和字符串
@@ -227,9 +227,9 @@ cout << "size of birds: " << sizeof birds << endl;
 
 9. 模板类
 
-    1. vector：使用new创建动态数组的替代品，new：存储在堆空间，可自由调整长度，可能效率稍低```vector<int> vt(n) //n可变```
+    1. vector：使用new创建动态数组的替代品，new：存储在堆空间，可自由调整长度，可能效率稍低```vector<int> vt(n) // n可变```
 
-    2. array: 对象长度固定，使用栈空间，效率更高```array<int, 5> ai; //数组长度不变```
+    2. array: 对象长度固定，使用栈空间，效率更高```array<int, 5> ai; // 数组长度不变```
 
     3. 数组、vector、array
 
@@ -248,20 +248,20 @@ cout << "size of birds: " << sizeof birds << endl;
 
 1. ex12 
     ```cpp
-    //使用方括号数组表示法等同于对指针解除引用
+    // 使用方括号数组表示法等同于对指针解除引用
     using namespace std;
     float treacle[10];
     float* p = treacle;
     cout << *p << *(p+9) << endl; 
-    cout << p[0] << p[9] <<endl;    //等价
+    cout << p[0] << p[9] <<endl;    // 等价
     ```
 
 2. ex16
     ```cpp
-    //获取字符串输入时，使用getline
+    // 获取字符串输入时，使用getline
     char address[20];
-    cin.getline(address, 20);  //getline(cin, address);
-    cin >> address;  //会丢弃空格，且只能读取到一个单词
+    cin.getline(address, 20);  // getline(cin, address);
+    cin >> address;  // 会丢弃空格，且只能读取到一个单词
     ```
 
 3. program ex8
@@ -271,7 +271,7 @@ cout << "size of birds: " << sizeof birds << endl;
     cout << "radius: \n";
     cin >> p1->radius;
     cout << "please enter company's name: \n";
-    cin.get();     //先获取半径，会在输入序列留下一个'\n'(确定时的回车键),导致getline直接跳过
+    cin.get();     // 先获取半径，会在输入序列留下一个'\n'(确定时的回车键),导致getline直接跳过
     getline(cin, p1->name);
     ```
 
@@ -295,13 +295,13 @@ cout << "size of birds: " << sizeof birds << endl;
 
     3. ```int num; return 0;.....```**不是表达式，没有值**
 
-4. ```for (int i = 0; i < 5; i++) //cpp new feature``` ```int i = 0```声明语句表达式，这种变量只在循环内有效
+4. ```for (int i = 0; i < 5; i++) // cpp new feature``` ```int i = 0```声明语句表达式，这种变量只在循环内有效
 
 5. ++和--
     ```cpp
         int x = 5;
         int y = x++;
-        cout << "x++: " << x << " y: " << y << endl;  //x++: 6 y: 5,使用x后自增
+        cout << "x++: " << x << " y: " << y << endl;  // x++: 6 y: 5,使用x后自增
         int z = 5;
         y = ++z;
         cout << "++z: " << z << " y: " << y << endl;  /++z: 6 y: 6，自增z后使用
@@ -316,7 +316,7 @@ cout << "size of birds: " << sizeof birds << endl;
             int guests = 0;
             while(guests++ < 10)
                 cout << guests << "  ";
-        //输出结果：1  2  3  4  5  6  7  8  9  10
+        // 输出结果：1  2  3  4  5  6  7  8  9  10
         ```
     ```(guests++ < 10)```是一个完整的表达式，该表达式末尾是一个顺序点，因此guests+1将在进入循环体前完成,```++```后缀保证guests先跟10比较再+1
 
@@ -325,7 +325,7 @@ cout << "size of birds: " << sizeof birds << endl;
     cout << "n++: ";
     for (int n = 0; n < 10; n++)
         cout << n;
-    cout << endl;                   //n++: 0123456789
+    cout << endl;                   // n++: 0123456789
     cout << "++n: ";
     for (int n = 0; n < 10; ++n)
         cout << n;
@@ -338,13 +338,13 @@ cout << "size of birds: " << sizeof birds << endl;
     int n1, n2;
     n1 = n2 = 0;
     cout << "n++: ";
-    for (int n = 0; n < 10; n1 = n++)   //n=0;n<10;cout<<n1=0;n1=n++(n1=0,n=1)n先用后+
-        cout << n1;                     //所以有两个0
-    cout << endl;                       //n++: 0012345678
+    for (int n = 0; n < 10; n1 = n++)   // n=0;n<10;cout<<n1=0;n1=n++(n1=0,n=1)n先用后+
+        cout << n1;                     // 所以有两个0
+    cout << endl;                       // n++: 0012345678
     cout << "++n: ";
-    for (int n = 0; n < 10; n2 = ++n)   //n=0;n<10;cout<<n2=0;n2=++n(n=1,n2=1)
+    for (int n = 0; n < 10; n2 = ++n)   // n=0;n<10;cout<<n2=0;n2=++n(n=1,n2=1)
         cout << n2;
-    cout << endl;                       //++n: 0123456789
+    cout << endl;                       // ++n: 0123456789
     ```
     前缀：将值+1，然后返回结果
     
@@ -356,18 +356,18 @@ cout << "size of birds: " << sizeof birds << endl;
 
     ```cpp
     double arr[5]{21.1, 32.8, 23.4, 45.2, 37.4};
-    double *pt = arr;                               //指向arr首地址
+    double *pt = arr;                               // 指向arr首地址
     cout << "pt: " << pt <<" *pt: " << *pt << endl; // pt: 0x61fdd0 *pt: 21.1
-    ++pt;                                           //pt+1
+    ++pt;                                           // pt+1
     cout << "pt: " << pt <<" *pt: " << *pt << endl; // pt: 0x61fdd8 *pt: 32.8
-    double x = *++pt;                               //pt+1后解引用
+    double x = *++pt;                               // pt+1后解引用
     cout << "x: " << x << endl;                     // x: 23.4
     cout << "pt: " << pt <<" *pt: " << *pt << endl; // pt: 0x61fde0 *pt: 23.4
-    ++*pt;                                          //解引用后+1，原地修改，pt不变
+    ++*pt;                                          // 解引用后+1，原地修改，pt不变
     cout << "pt: " << pt <<" *pt: " << *pt << endl; // pt: 0x61fde0 *pt: 24.4
-    (*pt)++;                                        //解引用后+1，原地修改，pt不变
+    (*pt)++;                                        // 解引用后+1，原地修改，pt不变
     cout << "pt: " << pt <<" *pt: " << *pt << endl; // pt: 0x61fde0 *pt: 25.4
-    x = *pt++;                                      //pt+1，解引用取出数据，此时用的是+1前的值，(pt++)：pt使用后+1
+    x = *pt++;                                      // pt+1，解引用取出数据，此时用的是+1前的值，(pt++)：pt使用后+1
     cout << "x: " << x << endl;                     // x: 25.4
     cout << "pt: " << pt <<" *pt: " << *pt << endl; // pt: 0x61fde8 *pt: 45.2
     ```
@@ -386,19 +386,19 @@ cout << "size of birds: " << sizeof birds << endl;
     5.  ```cpp
         int cats;
         cats = 17, 240;
-        cout << "cats: " << cats << endl;               //cats: 17
+        cout << "cats: " << cats << endl;               // cats: 17
         (cats = 17), 240;
-        cout << "cats: " << cats << endl;               //cats: 17
+        cout << "cats: " << cats << endl;               // cats: 17
         cats = (17, 240);
-        cout << "cats: " << cats << endl;               //cats: 240
+        cout << "cats: " << cats << endl;               // cats: 240
         cats = (240, 17);
-        cout << "cats: " << cats << endl;               //cats: 17
+        cout << "cats: " << cats << endl;               // cats: 17
         ```
 
 10. 字符串比较
     ```cpp
     char word[5] = "mate";
-    word == "mate";             //不能比较，两者都是一个地址，用strcmp比较，可能返回<0, >0, =0的值
+    word == "mate";             // 不能比较，两者都是一个地址，用strcmp比较，可能返回<0, >0, =0的值
     ```
 
 ## 5.2 while循环
@@ -417,8 +417,8 @@ cout << "size of birds: " << sizeof birds << endl;
     ```cpp
     #define float_pt float *
     float a = 0.;
-    float_pt pa = &a, pb = 1;                       //pa: pointer, pb: float
-    cout << "pa: " << pa << " pb: " << pb << endl;  //pa: 0x61fe1c pb: 1
+    float_pt pa = &a, pb = 1;                       // pa: pointer, pb: float
+    cout << "pa: " << pa << " pb: " << pb << endl;  // pa: 0x61fe1c pb: 1
     ``` 
 
     2. typedef(alias): 不会创建新类型，建立一个新名称
@@ -427,10 +427,10 @@ cout << "size of birds: " << sizeof birds << endl;
         ```cpp
         double prices[5] = {4.99, 10.99, 6.87, 7.99, 8.49};
         for (double x : prices)
-            cout << "x: " << x << ' ';//x: 4.99 x: 10.99 x: 6.87 x: 7.99 x: 8.49 
+            cout << "x: " << x << ' ';// x: 4.99 x: 10.99 x: 6.87 x: 7.99 x: 8.49 
         cout << '\n';
         for (double &x : prices)
-            cout << "x: " << x << ' ';//x: 4.99 x: 10.99 x: 6.87 x: 7.99 x: 8.49 
+            cout << "x: " << x << ' ';// x: 4.99 x: 10.99 x: 6.87 x: 7.99 x: 8.49 
         ```
 
 ## 5.5 循环和文本输入
@@ -439,14 +439,14 @@ cout << "size of birds: " << sizeof birds << endl;
     char ch;
     int count = 0;
     cout << "enter '#' to quit.\n";
-    cin >> ch;                          //hbjhgjhg ghgjhg  #hghg,在这里输入了一行
+    cin >> ch;                          // hbjhgjhg ghgjhg  #hghg,在这里输入了一行
     while (ch != '#')
     {
-        cout << ch;                     //hbjhgjhgghgjhg
+        cout << ch;                     // hbjhgjhgghgjhg
         ++count;
         cin >> ch;
     }
-    cout << "\ncount: " << count << endl;       //count: 14
+    cout << "\ncount: " << count << endl;       // count: 14
     ```
 
     1. cin会忽略空格和换行符
@@ -462,9 +462,9 @@ cout << "size of birds: " << sizeof birds << endl;
 ## 5.7 总结
 
 ```cpp
-cin >> ch;          //将输入中的下一个字符读入到ch中，会忽略空格、换行符和制表符
-cin.get(ch);        //读取输入中的下一个字符（不管是什么）并存储到ch中，返回的是cin对象，该对象可以被转换成bool值，标志读取是否成功
-ch = cin.get();     //成员函数返回下一个输入字符，包括空格、换行符和制表符
+cin >> ch;          // 将输入中的下一个字符读入到ch中，会忽略空格、换行符和制表符
+cin.get(ch);        // 读取输入中的下一个字符（不管是什么）并存储到ch中，返回的是cin对象，该对象可以被转换成bool值，标志读取是否成功
+ch = cin.get();     // 成员函数返回下一个输入字符，包括空格、换行符和制表符
 ```
 
 ```cin.get(ch)```**返回的是cin对象**,```cin.get()```**返回字符**```cin >> ch```**会跳过空白、回车、制表符**
@@ -496,21 +496,21 @@ ch = cin.get();     //成员函数返回下一个输入字符，包括空格、�
 
 ## 6.8 简单文件输入/输出
 ```cpp
-#include <fstream>          //1. 包含fstream；
-ofstream outFile;           //2. 创建一个ofstream对象；
-outFile.open("a.txt");      //3. 将该对象跟一个文件关联；
-                            //像使用cout一样
+#include <fstream>          // 1. 包含fstream；
+ofstream outFile;           // 2. 创建一个ofstream对象；
+outFile.open("a.txt");      // 3. 将该对象跟一个文件关联；
+                            // 像使用cout一样
 outFile.close();
 ```
 ```cpp
 #include <fstream>
-#include <cstdlib>          //包含了exit()，定义了参数EXIT_FAILURE，用来终止程序
+#include <cstdlib>          // 包含了exit()，定义了参数EXIT_FAILURE，用来终止程序
 ifstream inFile;
 inFile.open("a.txt");
-if (!inFile.is_open())      //判断文件打开是否成功
+if (!inFile.is_open())      // 判断文件打开是否成功
     exit(EXIT_FAILURE);
-                            //像使用cin一样
-//inFile.good(); inFile.eof(); inFile.fail();   一些标志，用来判断读取到的数据是否有问题
+                            // 像使用cin一样
+// inFile.good(); inFile.eof(); inFile.fail();   一些标志，用来判断读取到的数据是否有问题
 inFile.close();
 ```
 
@@ -559,7 +559,7 @@ inFile.close();
 
         ```cpp
         int age = 18;
-        const int * pt = &age; //可以通过age来修改值，但不能通过pt来修改
+        const int * pt = &age; // 可以通过age来修改值，但不能通过pt来修改
         ```
         pt指向一个const int，不能使用pt来修改这个值，但并不意味着它指向的值是个常量，而是对pt而言，这个值是常量
 
@@ -574,9 +574,9 @@ inFile.close();
         const int **pp2;
         int *p1;
         const int n = 13;
-        pp2 = &p1;          //not allowed, but suppose it were
-        *pp2 = &n;          //valid, both const, but sets p1 to point as n
-        *p1 = 10;           //valid, but changes const n
+        pp2 = &p1;          // not allowed, but suppose it were
+        *pp2 = &n;          // valid, both const, but sets p1 to point as n
+        *p1 = 10;           // valid, but changes const n
         ```
         只有一层间接关系时，才可以将非const地址或指针赋给const指针
         **非const指针指向非const数据**
@@ -613,7 +613,7 @@ inFile.close();
 3.  使用数组表示法声明时，参数不一定必须是数组名，可以是其他形式的指针
     ```cpp
     unsigned int c_in_str(const char * str, char ch)
-    unsigned int c_in_str(const char str[], char ch)    //字符数组名 = char*
+    unsigned int c_in_str(const char str[], char ch)    // 字符数组名 = char*
     ```
 
 ## 7.10 函数指针
@@ -622,14 +622,14 @@ inFile.close();
 
 2. 获取函数的地址，只使用函数名
     ```cpp
-    process(think);         //给process传入think函数的地址
-    thaught(think());       //给thaught传入think的返回值
+    process(think);         // 给process传入think函数的地址
+    thaught(think());       // 给thaught传入think的返回值
     ```
 
 3. 声明函数指针
     ```cpp
-    double (*pf)(int);      //pf points to a function that returns double
-    double *pf(int);        //pf() a function that returns a pointer-to-double
+    double (*pf)(int);      // pf points to a function that returns double
+    double *pf(int);        // pf() a function that returns a pointer-to-double
     ```
     ```cpp
     double pam(int);
@@ -637,7 +637,7 @@ inFile.close();
     pf = pam;
     double x = pam(4);
     double y = (*pf)(5);
-    double z = pf(5);           //允许直接使用函数指针调用函数
+    double z = pf(5);           // 允许直接使用函数指针调用函数
     ```
     ```(*pf)```是函数，```pf```是函数指针，pam的参数列表和返回类型必须和pf的相同
 
@@ -670,10 +670,10 @@ inFile.close();
     ```cpp
     int rats = 101;
     int *pt = &rats;
-    int &rodents = *pt;     //rodents是(*pt = rats)的别名
-                            //rodents指向某个地址处不再改变，使用rodents改变的是该地址里的内容
+    int &rodents = *pt;     // rodents是(*pt = rats)的别名
+                            // rodents指向某个地址处不再改变，使用rodents改变的是该地址里的内容
     int bunnies = 50;
-    pt = &bunnies;          //不影响rodents
+    pt = &bunnies;          // 不影响rodents
     rodents = bunnies;      // = (rats = bunnies)，将bunnies的值赋给rats
     ```
 
@@ -704,15 +704,15 @@ inFile.close();
     ```cpp
     accumulate(dup, four) = five;  
     //   = 
-    accumulate(dup, four);          //返回的是指向dup的引用
-    dup = five;                     //再次修改dup
+    accumulate(dup, four);          // 返回的是指向dup的引用
+    dup = five;                     // 再次修改dup
     ```
 
 6. 为何要使用引用？
 
     ```cpp
     struct free_throws & accumulate(free_throws & target, const free_throws & source) 
-    //声明返回的是引用
+    // 声明返回的是引用
     {
         return target;
     };
@@ -798,16 +798,16 @@ double gronk(int n, float m);
 
     double x = 55.5;
     const double y = 32.0;
-    stove(x);                 //call stove(double & r1);
-    stove(y);                //call stove(const double & r2);
-    stove(x + y);           //call stove(double && r1);
+    stove(x);                 // call stove(double & r1);
+    stove(y);                // call stove(const double & r2);
+    stove(x + y);           // call stove(double && r1);
     ```
 
 7. 需要使用不同类型的参数时，使用函数重载
 
 8. 编译器通过名称修饰（名称矫正）来区分重载的函数
 ```cpp
-long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
+long MyFunctionFoo(int, float);     // ?MyFunctionFoo@@YAXH
 ```
 
 ## 8.5 函数模板
@@ -815,7 +815,7 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 1. 关键字
     ```cpp
     template;
-    typename;       //可以用class代替
+    typename;       // 可以用class代替
 
     template <typename T>
     void Swap(T &a, T &b)
@@ -840,8 +840,8 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
     2. 具体化可以修改函数内的操作
 
     3.  ```cpp
-        template;            //显式实例化
-        template <>;        //显式具体化
+        template;            // 显式实例化
+        template <>;        // 显式具体化
         ```
 
 6. 重载解析，选择合适的函数版本
@@ -867,8 +867,8 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 
 9.  ```cpp
     double xx = 4.4;
-    decltype(xx) v1;        //v1 is type double;
-    decltype((xx)) v2;      //v2 is type double &;
+    decltype(xx) v1;        // v1 is type double;
+    decltype((xx)) v2;      // v2 is type double &;
     ```
 
 # 9. 内存模型和名称空间
@@ -911,14 +911,14 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
     int main()
     {
         int x = 2021;
-        cout << "main x = " << x << endl;               //main x = 2021
+        cout << "main x = " << x << endl;               // main x = 2021
         {
-            cout << "block x = " << x << endl;          //block x = 2021
-            int x = 1202;                               //new var, hide main x
+            cout << "block x = " << x << endl;          // block x = 2021
+            int x = 1202;                               // new var, hide main x
         //  x = 1202;                                     not change x
-            cout << "new block x = " << x << endl;      //new block x = 1202
+            cout << "new block x = " << x << endl;      // new block x = 1202
         }
-        cout << "after block x = " << x << endl;        //after block x = 2021
+        cout << "after block x = " << x << endl;        // after block x = 2021
         return 0;
     }
     ```
@@ -947,9 +947,9 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
     1. 单定义规则：变量只有一次定义，引用声明使用extern，且不进行初始化
 
     ```cpp
-    double up;              //definition, up is 0
-    extern int blem;        //defined elsewhere
-    entern char gr = 'z';   //definition, because initialized
+    double up;              // definition, up is 0
+    extern int blem;        // defined elsewhere
+    entern char gr = 'z';   // definition, because initialized
     ```
 
     2. 作用域解析运算符```::var```，表示使用变量```var```的全局版本
@@ -965,9 +965,9 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
     int main()
     {
         static int s = 1;
-        def_static();                   //static s = 20
-        cout << "s = " << s << endl;    //s = 1
-        def_static();                   //static s = 30
+        def_static();                   // static s = 20
+        cout << "s = " << s << endl;    // s = 1
+        def_static();                   // static s = 30
         return 0;
     }
 
@@ -1008,9 +1008,9 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
     2. 编译器将函数名翻译为符号名称，C++使用名称修饰
 
     ```cpp
-    extern "C" void spiff(int);         //use C protocol for name look-up       _spiff
-    extern void spoff(int);             //use C++ protocol for name look-up     _spoff_i
-    extern "C++" void spaff(int);       //use C++ protocol for name look-up     _spaff_i
+    extern "C" void spiff(int);         // use C protocol for name look-up       _spiff
+    extern void spoff(int);             // use C++ protocol for name look-up     _spoff_i
+    extern "C++" void spaff(int);       // use C++ protocol for name look-up     _spaff_i
     ```
 
 16. ```new```失败：旧：返回空指针；新：引发异常```std::bad_alloc```
@@ -1035,8 +1035,8 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 
 4. using声明和using编译指令
     ```
-    using std::cin;         //using声明，将特定名称添加到它所属的声明区域中，使一个名称可用
-    using namespace std;    //using编译指令，使所有名称可用
+    using std::cin;         // using声明，将特定名称添加到它所属的声明区域中，使一个名称可用
+    using namespace std;    // using编译指令，使所有名称可用
     ```
     1. 当名称空间和声明区域定义了相同的名称时，若使用using声明，则这两个名称会发生冲突；使用using编译指令，该名称的局部版本将隐藏名称空间版本
 
@@ -1092,9 +1092,9 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 
 4.  
     ```cpp
-    //class Stock
-    Stock garment = Stock("Furry", 0, 2.5);     //显式调用构造函数
-    Stock garment("Furry", 0, 2.5);             //隐式调用
+    // class Stock
+    Stock garment = Stock("Furry", 0, 2.5);     // 显式调用构造函数
+    Stock garment("Furry", 0, 2.5);             // 隐式调用
     ```
 
 5. 定义默认构造函数
@@ -1106,8 +1106,8 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 6. 析构函数```~Stock();```没有返回值和声明类型，没有参数
 
 7.  ```cpp
-    Stock stock2 = Stock("Boffo", 2, 2.0);      //初始化，可能会创建临时变量，也可能不创建，编译器决定
-    stock1 = Stock("Nifty", 10, 50.0);          //Stock一定会创建临时变量，然后赋值给stock1
+    Stock stock2 = Stock("Boffo", 2, 2.0);      // 初始化，可能会创建临时变量，也可能不创建，编译器决定
+    stock1 = Stock("Nifty", 10, 50.0);          // Stock一定会创建临时变量，然后赋值给stock1
     ```
 
 8. 先构造，后析构；中间用新构造的变量给变量重新赋值了，依然根据构造顺序后析构
@@ -1121,7 +1121,7 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
     Stock temp {};
     ```
 
-11. const成员函数``` void Stock::show() const       //promises not to change invoking object```;const放在函数后面，保证不修改对象内容
+11. const成员函数``` void Stock::show() const       // promises not to change invoking object```;const放在函数后面，保证不修改对象内容
 
 12. 警告：接受一个参数的构造函数允许使用赋值语法将对象初始化为一个值
 
@@ -1144,12 +1144,12 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 
 1. 作用域为类的常量
     ```cpp
-    //在类中定义常量，适用于所有对象的常量
+    // 在类中定义常量，适用于所有对象的常量
     class Bakery
     {
         private:
-        const int Months = 12;              //fails
-        static const int Months;            //valid
+        const int Months = 12;              // fails
+        static const int Months;            // valid
         enum {Months = 12};
     }
     ```
@@ -1190,8 +1190,8 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
     1. 默认参数在声明和定义的地方只能出现一次
 
     ```cpp
-    Person(const std::string &ln, const char * fn = "Heyyou");      //declare
-    Person(const std::string &ln, const char * fn)                  //definition
+    Person(const std::string &ln, const char * fn = "Heyyou");      // declare
+    Person(const std::string &ln, const char * fn)                  // definition
     {
         ...
     } 
@@ -1204,7 +1204,7 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 1. 运算符函数：
     
     ```cpp
-        operator+();    operator*();    operator[]();   //只能重载有效的C++运算符，[]是数组索引运算符        
+        operator+();    operator*();    operator[]();   // 只能重载有效的C++运算符，[]是数组索引运算符        
     ```
 
 2. 重载限制：
@@ -1244,9 +1244,9 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 3. 只接受一个参数，可以使用```=```来初始化类对象
 
     ```cpp
-    Stonewt incognito = 275;                //接受一个参数
-    Stonewt incognito(275);                 //
-    Stonewt incognito = Stonewt(275);       //可以同时接受多个参数
+    Stonewt incognito = 275;                // 接受一个参数
+    Stonewt incognito(275);                 // 
+    Stonewt incognito = Stonewt(275);       // 可以同时接受多个参数
     ```
 
 4. 构造函数：某种类型到类类型的转换
@@ -1263,7 +1263,7 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 
     5. 通过类对象来调用
     ```cpp
-    operator typeName();    //operator double();
+    operator typeName();    // operator double();
     ```
 
 6. 
@@ -1321,7 +1321,7 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 5. 返回const对象
     ```cpp
     net  = force1 + force2;
-    force1 + force2 = net;      //force1 + force2返回的是局部对象时，将生成临时对象，返回类型+const可以防止误用和滥用
+    force1 + force2 = net;      // force1 + force2返回的是局部对象时，将生成临时对象，返回类型+const可以防止误用和滥用
     cout << (force1 + force2 = net) << endl;
     ```
 
@@ -1351,10 +1351,10 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
             const int qsize;
             Agency & belong;        
     }
-        //成员初始化列表只能用于构造函数
-    Queue::Queue(int qs) : qsize(qs)        //const类成员、被声明为引用的类成员，必须使用成员初始化列表来初始化
+        // 成员初始化列表只能用于构造函数
+    Queue::Queue(int qs) : qsize(qs)        // const类成员、被声明为引用的类成员，必须使用成员初始化列表来初始化
     {
-        front = rear = NULL;                //对于其它类成员，使用成员初始化列表效率更高
+        front = rear = NULL;                // 对于其它类成员，使用成员初始化列表效率更高
         items = 0;
     }
     ```
@@ -1470,7 +1470,7 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 1. C++通过使用纯虚函数提供未实现的函数
 
     ```cpp
-    virtual double Area() const=0;      //a pure virtual function
+    virtual double Area() const=0;      // a pure virtual function
     ```
 
 2. 当类声明中包含纯虚函数时，不能创建该类的对象，包含纯虚函数的类只能用作基类。但C++允许纯虚函数有定义
@@ -1615,7 +1615,7 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 3. 虚基类：从多个类（它们的基类相同）派生出的对象只继承一个基类对象，它们共享一个基类对象
 
     ```cpp
-    class Singer : virtual public Worker{};     //将Worker用作虚基类
+    class Singer : virtual public Worker{};     // 将Worker用作虚基类
     class Waiter : public virtual Worker{};
     ```
 
@@ -1943,7 +1943,191 @@ long MyFunctionFoo(int, float);     //?MyFunctionFoo@@YAXH
 
 2. C++11新增两种，```string(string && str) no expect```和```string(initializer_list<char>il)```
 
-3. 
+3.  输入方式
+    
+    1. C-风格字符串
+
+        ```cpp
+        char info[100];
+        cin >> info;                    // read a word
+        cin.getline(info, 100);         // read a line, discard '\n'
+        cin.get(info, 100);             // read a line, discard '\n'
+
+        cin.getline(info, 100, ':');    // read up to :, discard ':'
+        ```
+
+    2. string对象
+        
+        ```cpp
+        string stuff;
+        cin >> stuff;
+        getline(cin, stuff);            // read a line, discard '\n'
+        getline(stuff, ':');            // read up to :, discard ':'
+        ```
+    
+    3. 两者区别：string的getline()将自动调整目标string对象的大小，使之刚好能够存储输入的字符
+
+4. String类重载了6个关系运算符，每个运算符都以3种方式重载，使得能够与C-风格字符串比较
+
+5. ```string::npos```string对象的最大允许长度
+
+6. 搜索子字符串
+
+    ```cpp
+    find(const string &str, size_type pos = 0)const;            // 返回子字符串首次出现时其首字符的索引
+    rfind();                                                    // 最后一次出现的位置
+    s.find_first_of("abc");                                     // 查找参数中任何字符首次出现的位置
+    s.find_first_not_of();
+    s.find_last_of();
+    s.find_last_not_of();
+    ```
+
+7. 字符串相关函数
+
+    ```cpp
+    int atoi(const char * nptr);                    // 将整数字符串转换成int类型的整数
+
+    char strtok(char str, const char * delim);      // 使用delim作为分隔符分割str，返回被分解的第一个子字符串或空指针，第一个参数传入NULL，则继续分割原来的字符串
+
+    capacity();                                     // 返回当前分配给字符串的内存块的大小
+    reserve(len);                                   // 请求内存块的最小长度，实际长度不一定等于len
+
+    c_str();                                        // 返回一个指向C-风格字符串的指针
+
+    ```
+
+## 16.2 智能指针模板类
+
+1. 解决内存泄漏问题
+
+2. 三个智能指针模板```(auto_ptr, unique_ptr, shated_ptr)```都定义了类似指针的 **对象** ，可以将new获得的地址赋给这种对象
+
+3. 创建智能指针对象，需要包含```<memory>```
+
+4. 所有智能指针都有一个```explicit```构造函数，该构造函数将指针作为参数
+
+5. 两个指针指向同一对象时，可能导致删除一个对象两次的现象
+
+    1. 定义赋值运算符，执行深拷贝
+
+    2. 建立所有权概念，对于特定对象，只能有一个智能指针可拥有它```auto_ptr, unique_ptr```，后者更严格
+
+    3. 创建智能更高的指针，使用引用计数```shared_ptr```
+
+    4. 让出所有权会导致留下悬挂指针
+
+    5. ```std::move()```能够将一个```unique_ptr```赋给另一个
+
+    6. 需要使用多个指向同一对象的指针，选择shared_ptr，不需要时使用uniqu_ptr
+
+
+
+# 17 STL
+
+1. 容器：用来管理某一类对象的集合，如```deque\list\vector\map```等
+
+2. 算法：作用于容器，提供各种操作方式，如初始化、排序、搜索、转换等
+
+3. 迭代器：用于遍历对象元素的集合
+
+4. STL将数据和操作分离，数据由容器进行管理，操作由算法进行
+
+5. vector
+
+    1. 一种序列式容器，相当于可拓展的数组
+    
+    2. 拥有一段连续的内存空间，随机访问快，在中间插入和删除慢，但在末尾插入和删除快
+
+    3. 适用于对象简单，变化小，频繁随机访问的场景
+
+    4. 方法
+
+        ```cpp
+        push_back();            // 在向量的末尾插入值
+        size();                 // 显示向量的大小，vector容器真实占用的大小
+        capacity();             // 是指预分配的空间
+
+        begin();                // 返回一个指向向量开头的迭代器
+        end();                  // 返回一个指向向量末尾的迭代器
+
+        []; 
+        .at();                  // 支持随机访问
+        ```
+
+6. deque
+
+    1. 由一段一段的定量连续空间构成，一旦要在前段或尾端增加新空间，便配置一段定量连续空间
+
+    2. 修改头尾方便，中间插入删除比较费时，必须移动其他元素
+
+    3. 适用于既要频繁随机读取，又要关心两端插入和删除的场景
+
+7. list
+
+    1. 由双向链表实现，元素存放在堆中，每个元素放在一块内存中，空间不连续，通过指针进行数据访问
+
+    2. 不预留空间，每分配或删除一个元素都分配、释放内存
+
+    3. 不支持随机访问
+
+    4. 适用于经常插入删除但不经常随机访问的场景
+
+8. set
+
+    1. 由红黑树实现，内部元素自动排序，无重复值
+
+    2. 插入删除效率比其他序列容器高，因为不需要做内存拷贝和移动
+
+    3. 每次插入值时都需要调整红黑树，影响效率
+
+    4. 适用于经常查找某元素是否在集合中且需要排序的场景
+
+    5. 当集合中的元素为结构体时，必须重载运算符 '<' 
+
+    6.  ```cpp
+        char str[100] = {0};
+        set<char> s(str, str+strlen(str));      // string -> set
+        ```
+
+9. map
+
+    1. 由红黑树实现，元素都是键值对，键作为排序的基础，不允许重复
+
+    2. 用于一对一映射的情况
+
+    3. 根据key值快速查找记录，复杂度O(logN)，增删节点对迭代器影响小
+
+    4. 对迭代器来说，可以修改实值，不能修改key
+
+10. stack: LIFO
+
+11. queue: FIFO
+
+12. priority_queue: 优先队列
+
+13. 顺序容器共有函数
+
+    ```cpp
+    begin();
+    end();
+    rbegin();               // 返回逆向迭代器指针
+    rend();
+    clear();                // 删除所有元素
+    erase(it);              // 删除指针it处的元素
+    ```
+
+14. STL算法
+
+    ```cpp
+    #include <algorithm>
+    vector<int> v;
+
+    sort(v.begin(), v.end(), greater<int>);         // STL遍历算法
+    for_each(v.begin(), v.end(), print);            // STL遍历输出算法
+    reverse(v.begin(), v.end());
+    ```
+
+
 
 
 
