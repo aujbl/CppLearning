@@ -2040,7 +2040,19 @@ long MyFunctionFoo(int, float);     // ?MyFunctionFoo@@YAXH
 
 4. 执行操作“复杂度”：编译时间、固定时间、线性时间
 
+## 16.5 函数对象
 
+1. 函数符：函数名、指向函数的指针、重载了()运算符的对象
+
+    1. 生成器：不用参数就可以调用的函数符
+
+    2. 一元函数：用一个参数可以调用的函数符
+
+    3. 二元函数
+
+    4. 谓词(predicate):返回bool值的一元函数
+
+    5. 二元谓词(binary predicate)
 
 
 # 17 STL
@@ -2067,7 +2079,27 @@ long MyFunctionFoo(int, float);     // ?MyFunctionFoo@@YAXH
         for (dobule x : prices){
             cout << x << endl;          
         }
+
+        copy();
+        find();
+        remove();                       // 不是成员，不能调整链表的长度，将没被删除的元素放在链表的开始位置，返回一个新的end迭代器
+        set_union();
+        set_intersection();
+        set_difference();
+        transform();
+        next_permutation();
         ```
+
+    3. <algorithm>: 非修改式序列操作、修改式序列操作、排序和相关操作
+
+    4. <numeric>: 通用数字运算
+
+    5. 按结果放置的位置分类：就地算法、复制算法
+
+    6. 以_copy结尾：接受一个额外的输出迭代器参数，指定结果的存放位置
+
+    7. 以_if结尾：根据将函数应用于容器元素得到的结果来执行操作
+
 
 3. 迭代器：用于遍历对象元素的集合
 
@@ -2146,6 +2178,11 @@ long MyFunctionFoo(int, float);     // ?MyFunctionFoo@@YAXH
     6.  ```cpp
         char str[100] = {0};
         set<char> s(str, str+strlen(str));      // string -> set
+        // 最后一个迭代器是输出迭代器，指出将结果集合复制到什么位置
+        // 创建了一个匿名的insert_iterator，将信息复制给C
+        set_union(A.begin(), A.end(), B.begin(), B.end(), insert_iterator<set<string>>(C, C.begin()));
+        lower_bound();                          // 返回指向第一个 不小于 键参数的迭代器
+        upper_bound();                          // 返回指向第一个 大于 键参数的迭代器
         ```
 
 9. map
@@ -2157,6 +2194,15 @@ long MyFunctionFoo(int, float);     // ?MyFunctionFoo@@YAXH
     3. 根据key值快速查找记录，复杂度O(logN)，增删节点对迭代器影响小
 
     4. 对迭代器来说，可以修改实值，不能修改key
+
+    5. multimap
+
+        ```cpp
+        count();                                // 接受键作为参数，返回具有该键的元素数目
+        equal_range();                          // 键作参数，返回两个迭代器，表示匹配的区间
+        ```
+
+    6. 关联容器基于树结构；无序关联容器基于数据结构哈希表
 
 10. stack: LIFO
 
