@@ -2054,8 +2054,12 @@ long MyFunctionFoo(int, float);     // ?MyFunctionFoo@@YAXH
 
     5. 二元谓词(binary predicate)
 
+## 17 输入、输出和文件
 
-# 17 STL
+1.  
+
+
+# 18 STL
 
 1. 容器：用来管理某一类对象的集合，如```deque\list\vector\map```等
 
@@ -2251,6 +2255,12 @@ long MyFunctionFoo(int, float);     // ?MyFunctionFoo@@YAXH
     sort(v.begin(), v.end(), greater<int>);         // STL遍历算法
     for_each(v.begin(), v.end(), print);            // STL遍历输出算法
     reverse(v.begin(), v.end());
+    ```
+
+    ```cpp
+    #include <numeric>
+
+    accumulate(nums.begin(), nums.end(), 0);        // 参数1, 2指定区间、参数3为初始值，参数4可以指定操作
     ```
 
 15. C++11新增：```forward_list; unorder_map; unorder_set; unorder_multimap; unorder_multiset;```
