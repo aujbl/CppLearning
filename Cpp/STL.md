@@ -31,17 +31,37 @@
         |Unordered-Map||
         |Unordered-Multimap||
 
-3. deque:分段连续buffer组成
+3. deque
+
+    1. 分段连续buffer组成
+
+    2. iterator: cur + first + last + node
+
+    3. insert时移动需要搬移数据较少的一边
 
 4. stack、queue其实是adapter，不提供iterator，会破坏FIFO、FILO
 
 5. 模板sort只能用于可以随机访问的容器，所以list不能使用模板sort
 
-# list
+6. list:双向链表实现
 
-1. 双向链表实现
+7. iterator必须提供5种associated types
+    
+    1. iterator_types
+    
+    2. value_type
+    
+    3. pointer
+    
+    4. reference
+    
+    5. difference_type
 
-2. 
+8. Traits:用来区分class iterator和non-class iterator
+
+9. vector/array直接用*ptr作iterator
+
+10. 
 
 
 
