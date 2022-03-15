@@ -65,7 +65,11 @@
 
 11. iterator_category:random_access_iterator/bidirectioinal_iterator/forward_iterator/output_iterator/input_iterator
 
-12. 
+12. 可以重载()作仿函数
+
+13. 仿函数：是一个对象，像一个函数；有算术类、逻辑运算类、相对关系类三类
+
+14. 仿函数可适配的条件：继承自binary_function（两个操作数）/unary_function（一个操作数）
 
 
 
