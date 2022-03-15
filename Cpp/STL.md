@@ -1,4 +1,4 @@
-1. STL六大部件：容器、分配器、算法、迭代器、适配器、仿函数
+1. STL六大部件：容器（模板类）、分配器（模板类）、算法（模板函数）、迭代器（模板类）、适配器（模板类）、仿函数（模板类）
 
 2. 结构与分类
 
@@ -61,7 +61,11 @@
 
 9. vector/array直接用*ptr作iterator
 
-10. 
+10. 算法和容器利用迭代器进行关联
+
+11. iterator_category:random_access_iterator/bidirectioinal_iterator/forward_iterator/output_iterator/input_iterator
+
+12. 
 
 
 
