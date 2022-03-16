@@ -71,5 +71,5 @@
 
 14. 仿函数可适配的条件：继承自binary_function（两个操作数）/unary_function（一个操作数）
 
-
+15. 
 
