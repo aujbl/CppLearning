@@ -1,11 +1,36 @@
 #include <iostream>
 using namespace std;
 
+class A{
+private:
+    friend ostream& operator<<(ostream &out, const A &a);
+public: 
+    int num1;
+    int num2;
+public:
+    A(int a=0, int b=0):num1(a), num2(b){};
+    A(const A& a){};
+    A& operator=(const A& a){
+        num1 = a.num1 + 1;
+        num2 = a.num2 + 1;
+        return *this;
+    };
+
+};
+
+ostream& operator<<(ostream &out, const A &a){
+    out << "num1: " << a.num1 << " num2: " << a.num2 << endl;
+    return out;
+};
+
 int main(){
-    int a[10] = {0, 1,2,3,4,5,6,7,8,9};
-    int (*p)[10] = &a;
-    int *p1 = (int *)p;
-    cout << *p1 << endl;
+    A a(1, 1);
+    A a1 = a;
+    cout << a;
+    A b;
+    cout << b;
+    b = a;
+    cout << b;
 
     return 0;
 }
