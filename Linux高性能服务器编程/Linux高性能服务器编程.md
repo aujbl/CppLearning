@@ -24,3 +24,28 @@
 
 7. ARP协议工作原理：主机向所在网络广播ARP请求，请求包括目标机器的网络地址。网络上的所有机器都收到请求，但只有目标机器回应一个ARP应答，其中包含自己的物理地址
 
+
+
+
+
+
+# 第5章 Linux网络编程基础API
+
+1. ```sys/socket.h```socket基础API；```netdb.h```网络信息API：主机名和IP地址转换、服务名称和端口号转换
+
+2. 主机字节序（小端）、网络字节序（大端：整数高位在低地址）
+
+    ```cpp
+    #include <netinet/in.h>
+    unsigned long int htonl(unsigned long int hostlong);                // host to network long
+                                                                        // 长整型主机字节序数据转换为网络字节序数据
+    unsigned long short htons(unsigned long int hostshort);                // host to network short
+    unsigned long int ntohl(unsigned long int hostlong);                // network to host long
+    unsigned long short ntohs(unsigned long int hostshort);                // network to host long
+    ```
+    
+3. 专用socket地址
+
+    ```cpp
+    sockaddr_in
+
