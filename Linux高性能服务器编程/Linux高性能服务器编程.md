@@ -47,5 +47,71 @@
 3. 专用socket地址
 
     ```cpp
+    // 通用socket地址
+    struct sockaddr{
+        sa_family_t sa_family;
+        char sa_data[14];
+    }；
+    // 专用socket地址
     sockaddr_in
+    {
+        sa_family_t sin_family;             // 地址族
+        u_int16_t sin_port;                 // 端口号
+        struct in_addr sin_addr;            // IPv4
+    };
+    struct in_addr{
+        u_int32_t s_addr;                   // 网络序IPv4地址
+    }；
+    // 所有专用socket地址在实际使用时都要转化为通用socket地址
+    ```
+
+4. IP地址转换函数
+
+    ```cpp
+    #include <arpa/inet.h>
+    in_addr_t inet_addr(const char* strptr);
+    int inet_aton(const char* cp, struct in_addr* inp);
+    char* inet_ntoa(struct in_addr in);                     // 将网络序整数地址转换为点分十进制IPv4地址
+
+    int inet_pton(int af, const char* src, void* dst);
+    const char* inet_ntop(int af, const void* src, char* dst, socklen_t cnt);
+    ```
+
+5. 在Linux中，socket是一个可读/可写/可控制/可关闭的文件描述符
+
+6. socket命名：将一个socket和socket地址绑定
+
+    ```cpp
+    #include<sys/types.h>
+    #include <sys/socket.h>
+    int bind(int sockfd, const struct sockaddr * my_addr, socklen_t addrlen);
+    // 服务端socket常需要命名，客户端socket通常采用匿名
+    ```
+
+7. 监听socket
+
+    ```cpp
+    #include <sys/socket.h>
+    int listen (int sockfd, int backlog);
+    ```
+
+8. accept只是从监听队列中取出连接，而不论连接处于何种状态
+
+9. 客户端发起连接
+
+    ```cpp
+    int connect(int sockfd, const struct sockaddr *serv_addr, socklen_t addrlen);
+    ```
+
+10. 关闭连接
+
+    1. close()关闭连接时将引用计数-1，只有当fd的引用计数为0时，才真正关闭连接
+
+    2. ```int shutdown(int sockfd, int howto);```可以分别关闭读写，或同时关闭
+
+11. 
+
+
+
+
 
