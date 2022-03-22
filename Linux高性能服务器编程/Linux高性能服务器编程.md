@@ -109,7 +109,104 @@
 
     2. ```int shutdown(int sockfd, int howto);```可以分别关闭读写，或同时关闭
 
-11. 
+11. TCP数据读写
+
+    ```cpp
+    #include <sys/types.h>
+    #include <sys/socket.h>
+    ssize_t recv(int sockfd, void *buf, size_t len, int flags);
+    ssize_t send(int sockfd, const void* buf, size_t len, int flags);
+    ```
+
+    1. recv读取sockfd上的数据，buf和len指定读缓冲区的位置和大小
+
+    2. send往sockfd上写数据，buf和len指定写缓冲区的位置和大小
+
+    3. flags参数只对send和recv的当前调用生效
+
+12. UDP数据读写
+
+    ```cpp
+    ```cpp
+    #include <sys/types.h>
+    #include <sys/socket.h>
+    ssize_t recvfrom(...);
+    ssize_t sendto(...);
+    ```
+
+    1. UDP通信没有连接，每次读取数据都要获取发送端的socket地址
+
+    2. recvfrom/sendto也可以用于面向连接的socket的数据读写
+
+13. 通用数据读写
+
+    ```cpp
+    ssize_t recvmsg(...);
+    ssize_t sendmsg(...);
+    ```
+
+14. 带外数据到达的两种常见方式：I/O复用产生的异常事件和SIGURG信号，用```int sockatmark(int sockfd);```判断sockfd是否处于带外标记
+
+15. 地址信息函数
+
+    ```cpp
+    int getsockname(...);
+    int getpeername(...);
+    ```
+
+16. 读取和设置socket文件描述符属性的方法
+
+    ```cpp
+    int getsockopt(...);
+    int setsockopt(...);
+    ```
+
+17. SO_REUSEADDR强制使用被处于TIME_WAIT状态的连接占用的socket地址
+
+18. SO_RCVBUF和SO_SNDBUF缓冲区大小，不小于某个最小值，最小值用来确保TCP连接拥有足够的空闲缓冲区来处理拥塞
+
+19. SO_RCVLOWAT和SO_SNDLOWAT：用来判断socket是否可读可写
+
+20. SO_LINGER：用于控制close系统调用在关闭TCP连接时的行为
+
+21. 网络信息API
+
+    ```cpp
+    gethostbyname();                // 根据主机名称获取主机的完整信息
+    gethostbyaddr();                // 根据IP获取主机的完整信息
+    getservbyname();                // 根据名称获取某个服务的完整信息
+    getservbyport();                // 根据端口号获取某个服务的完整信息
+                                    // 四个函数都是不可重入的，非线程安全的（可重入版本函数名尾部_r）
+
+    getaddrinfo();                  // 既能通过主机名获得IP地址，也能通过服务名获得端口号
+    getnameinfo();                  // 通过socket地址同时获得以字符串表示的主机名和服务名
+    ```
+
+    1. 可以用服务名称来代替端口号
+
+# 第6章 高级I/O函数
+
+1. pipe函数：创建由两个文件描述符构成的管道```int pipe(int fd[2]);      // fd[0]读取，fd[1]写入```
+
+2. dup函数：创建一个新的文件描述符，指向和原文件描述符相同的文件、管道或网络连接
+
+3. readv()将数据从文件描述符读到分散的内存块中（分散读）；writev()将多块分散的内存数据一并写入文件描述符中（集中写）
+
+4. sendfile():在两个文件描述符之间直接传递数据（内核中操作），避免了缓冲区之间的数据拷贝，效率高（零拷贝）
+
+    ```cpp
+    #include <sys/sendfile.h>
+    ssize_t sendfile(int out_fd, int in_fd, off_t* offset, size_t count);       // in_fd必须指向真实文件
+    ```
+
+5. mmap()用于申请一段内存空间，作为进程间通信的共享内存；munmap()释放由mmap创建的内存空间
+
+6. splice()用于在两个文件描述符之间移动数据，零拷贝操作
+
+7. tee()在两个管道文件描述符之间复制数据，零拷贝操作。它不消耗数据，源数据仍可用于后续操作
+
+8. fcntl()提供了对文件描述符的各种控制操作，在网络编程中，常用来将一个文件描述符设置为非阻塞的
+
 
 
 
