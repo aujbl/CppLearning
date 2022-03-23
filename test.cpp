@@ -1,36 +1,22 @@
 #include <iostream>
 using namespace std;
 
-class A{
-private:
-    friend ostream& operator<<(ostream &out, const A &a);
-public: 
-    int num1;
-    int num2;
-public:
-    A(int a=0, int b=0):num1(a), num2(b){};
-    A(const A& a){};
-    A& operator=(const A& a){
-        num1 = a.num1 + 1;
-        num2 = a.num2 + 1;
-        return *this;
-    };
-
+//union联合体的重叠式存储，endian联合体占用内存的空间为每个成员字节长度的最大值
+union endian
+{
+ int a;
+ char ch;
 };
 
-ostream& operator<<(ostream &out, const A &a){
-    out << "num1: " << a.num1 << " num2: " << a.num2 << endl;
-    return out;
-};
 
-int main(){
-    A a(1, 1);
-    A a1 = a;
-    cout << a;
-    A b;
-    cout << b;
-    b = a;
-    cout << b;
-
-    return 0;
+int main()
+{
+ endian value;
+ value.a = 0x1234;
+ //a和ch共用4字节的内存空间
+ if (value.ch == 0x12)
+ cout << "big endian"<<endl;
+ else if (value.ch == 0x34)
+ cout << "little endian"<<endl;
 }
+
