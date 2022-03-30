@@ -1,0 +1,26 @@
+{"for i loop":{
+    "prefix": "fori",    //在新建立的页面中输入C++就会有智能提示，Tab就自动生成好了
+    "body": [
+        "for (int i=0; i<m; ++i){",
+        // "#include <cmath>",     //这个头文件可以删除，我为了使用方便就加了
+        "    $0", //空行
+        "}",
+        "",
+    ],
+    "description": "A cpp file template.",   //用户输入后智能提示的内容（你可以用中文写“生成C++模板”）
+},
+
+"for j loop":{
+    "prefix": "forj",    //在新建立的页面中输入C++就会有智能提示，Tab就自动生成好了
+    "body": [
+        "for (int j=0; j<n; ++j){",
+        // "#include <cmath>",     //这个头文件可以删除，我为了使用方便就加了
+        "    $0", //空行
+        "}",
+        "",
+    ],
+    "description": "A cpp file template.",   //用户输入后智能提示的内容（你可以用中文写“生成C++模板”）
+},
+
+
+}
