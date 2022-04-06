@@ -1,22 +1,34 @@
-#include <iostream>
+#include <bits/stdc++.h>
+
 using namespace std;
 
-//union联合体的重叠式存储，endian联合体占用内存的空间为每个成员字节长度的最大值
-union endian
-{
- int a;
- char ch;
+typedef pair<int, int> mytyp;
+
+struct cmp{
+    bool operator() (const mytyp& t1, const mytyp& t2){
+        return t1.second > t2.second;
+    }
 };
 
 
-int main()
+int main(int argc, char const *argv[])
 {
- endian value;
- value.a = 0x1234;
- //a和ch共用4字节的内存空间
- if (value.ch == 0x12)
- cout << "big endian"<<endl;
- else if (value.ch == 0x34)
- cout << "little endian"<<endl;
-}
+    priority_queue<mytyp, vector<mytyp>, cmp > q;
 
+    mytyp b(1, 2);
+    mytyp c(1, 3);
+    mytyp d(2, 5);
+    mytyp e(2, 2);
+
+    q.emplace(b);
+    q.emplace(c);
+    q.emplace(d);
+    q.emplace(e);
+
+    while (!q.empty()){
+        cout << q.top().first << " " << q.top().second << endl;
+        q.pop();
+    }
+
+    return 0;
+}
