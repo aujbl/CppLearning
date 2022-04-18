@@ -212,3 +212,42 @@
 
 
 
+# 第七章 Linux服务器编程规范
+
+1. rsyslogd守护进程，既能接收用户进程输出的日志，也能接收内核日志
+
+2. syslog函数：应用程序使用该程序与rsyslogd守护进程通信
+
+3. UID/EUID/GID/EGID
+
+4. 进程组：```getpgid();    setpgid();    ```
+
+5. 一些有关联的进程组将形成一个会话```setsid();```
+
+6. 系统资源限制
+
+    ```cpp
+    int getrlimit(int resource, struct rlimit *rlim);               
+    int setrlimit(int resoutce, const struct rlimit *rlim);
+    ```
+
+7. 改变工作目录和根目录
+
+    ```cpp
+    #include <unistd.h>
+    char* getcwd(char* buf, size_t size);           // 获取当前工作目录
+    int chdir(const char* path);                    // 改变进程工作目录
+    int chroot(const char* path);                   // 改变进程根目录
+    ```
+
+# 第八章 高性能服务器程序框架
+
+1. 
+
+
+
+
+
+
+
+

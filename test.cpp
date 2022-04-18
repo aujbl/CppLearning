@@ -1,26 +1,55 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
-int main(){
-    string s;
-    s = "assssa";
-    // while (cin >> s){
-        vector<int> cnt(26, 0);
-        int min_oc = INT_MAX;
-        for (auto ch : s){
-            cnt[ch - 'a']++;
-            min_oc = min(min_oc, cnt[ch - 'a']);
+#include<algorithm>
+
+class Solution {
+public:
+    string mostCommonWord(string paragraph, vector<string>& banned) {
+        unordered_set<string> bands;
+        unordered_map<string, int> cnt;
+        for (auto s : banned){
+            bands.emplace(s);
         }
-        for (auto ch : s){
-            if (cnt[ch - 'a'] == min_oc){
-                continue;
+        int max_cnt = 0;
+        string res;
+        string tmp;
+        transform(paragraph.begin(), paragraph.end(), paragraph.begin(), ::tolower);
+        for (auto c : paragraph){
+            if (c >= 'a' && c <= 'z'){
+                tmp += c;
+            }else{
+                if (tmp.size() > 0){
+                    cnt[tmp] += 1;
+                    if (cnt[tmp] > max_cnt){
+                        max_cnt = cnt[tmp];
+                        res = tmp;
+                    }
+                }
+                tmp.clear();
             }
-            cout << ch;
         }
-        cout << endl;
-        // s.clear();
-    // }
-        
-    
+
+        return res;
+    }
+};
+
+int main(int argc, char const *argv[])
+{
+    Solution solution;
+    string paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.";   
+    vector<string> banned = {"hit"};
+
+    if (argc <= 1){
+        cout << "argc <= 1" << endl;
+    }else{
+        cout << "argc > 1" << endl;
+    }
+
+    solution.mostCommonWord(paragraph, banned);
+
     return 0;
 }
+
+
