@@ -443,10 +443,124 @@
 
 # 系统调用
 
+
+
 1. open
 
     1. 创建文件时，可以指定文件权限。文件权限同时受umask影响 文件权限 = mode & ~umask
 
-    2. 可以通过```strerror()```打印错误信息
+    2. 可以通过```strerror()```打印错误信息,权限同时受umask影响 文件权限 = mode & ~umask
 
+2. ```read/write(int fd, char* buf, size_t num);```
     
+    1. 参数：文件描述符/缓冲区/缓冲区大小
+
+    2. 返回值：0文件结尾，-1错误并设置errno（若errno为EAGIN或EWOULDBLOCK，则表示非阻塞读文件并且文件无数据），大于0整数表示读到的字节数
+
+
+3. 错误处理函数
+
+    1. ```strerror(int errno);```
+
+    2. ```perror("error info")```打印info + strerror信息
+
+4. 文件描述符
+
+    PCB进程控制块：本质 结构体
+
+    成员：文件描述符表
+
+    最大数量1024
+
+5. 阻塞/非阻塞
+
+    产生场景：读设备文件/读网络文件；读常规文件无阻塞
+
+6. fcntl
+
+    获取文件状态：F_GETFL
+
+    设置文件状态：F_SETFL
+
+7. lseek
+
+    off_t lseek(int fd, off_t offset, int whence);
+
+    参数：文件描述符/偏移量/起始偏移位置（SEEK_SET,SEEK_CUR,SEEK_END）
+
+    返回值：成功返回较起始位置的偏移量；失败返回-1，设置errno
+
+    应用场景：文件“读”“写”使用同一偏移量；获取文件大小/拓展文件大小，要真正拓展文件，需要IO操作（可以使用truncate函数直接拓展文件）
+
+8. 传入参数：
+
+    1. 指针作为函数参数
+
+    2. 通常有const修饰
+
+    3. 指针指向有效区域，在函数内部作读操作
+
+9. 传出参数
+
+    1. 指针作为函数参数
+
+    2. 函数调用前，指针指向空间可以无意义，但必须有效
+
+    3. 指针指向有效区域，在函数内部作写操作
+
+    4. 函数调用结束后，充当函数返回值
+
+10. 传入传出参数
+
+    1. 指针作为函数参数
+
+    2. 函数调用前，指针指向空间有实际意义
+
+    3. 在函数内部，先读后写
+
+    4. 函数结束后，指针充当返回值
+
+11. stat
+
+    int stat(const char *pathname, struct stat *statbuf);
+
+    参数：文件路径/buf存放文件属性
+
+    返回值：成功0/失败-1 errno
+
+    获取文件属性：buf.st_size/buf.st_mode
+
+    判断文件类型：S_ISREG/S_ISDIR...等
+
+12. lstat
+
+    同stat，但不会穿透符号链接
+
+13. link
+
+    创建一个目录项
+
+14. unlink
+
+    删除一个目录项
+
+    unlink后只是具备了删除条件，只有所有打开该文件的进程全部结束后，系统才会释放该文件
+
+15. readlink:读链接文件本身
+
+16. getcwd();chdir();
+
+17. DIR* opendir(char* name);
+
+18. int closedir(DIR* dp);
+
+19. struct dirent* readdir(DIR* dp);
+
+    struct dirent{
+        inode,
+        char dname[];
+    }
+
+
+
+
