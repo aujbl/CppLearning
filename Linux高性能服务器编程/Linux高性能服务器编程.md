@@ -561,6 +561,21 @@
         char dname[];
     }
 
+20. int dup(int oldfd);
 
+        返回一个同时指向oldfd的文件描述符
 
+21. int dup2(int oldfd, int newfd);
 
+        newfd也指向oldfd所指向的文件
+
+22. int fcntl(int fd, int cmd, ... /* arg */ );
+
+    ```c
+    int fd = open(argv[1], O_RDWR);
+
+    int newfd = fcntl(fd, F_DUPFD, 7);      // 7未被占用时，作为新的描述符，否则使用最小可用描述符
+
+    ```
+
+    
