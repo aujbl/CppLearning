@@ -31,3 +31,6 @@
 *.out
 *.app
 *.pdf
+
+#Directories
+cmake-build-debug/
