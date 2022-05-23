@@ -629,5 +629,35 @@
 
     WIFEXITED / WIFSIGNALED...宏函数判断函数终止原因
 
-30. 
+30. pipe管道
+
+    父子进程之间通信
+
+    兄弟进程之间通信
+
+31. fifo管道
+
+    无血缘关系进程间通信
+
+32. void *mmap(void *addr, size_t length, int prot, int flags,
+                  int fd, off_t offset);
+
+        addr：指定映射区的首地址，为NULL时，系统分配
+
+        length：共享映射区大小
+
+        prot：共享内存映射区的读写属性 PROT_READ/PROT_WRITE/PROT_NONE
+
+        flags：标注共享属性 MAP_SHARED/MAP_PROVATE
+
+        fd: 用于创建共享内存映射区的文件描述符
+
+        offset：偏移位置，4k的整数倍
+
+33. 
+
+
+
+
+    
 
