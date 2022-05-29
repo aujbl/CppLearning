@@ -654,7 +654,72 @@
 
         offset：偏移位置，4k的整数倍
 
-33. 
+33. 线程概念
+
+    进程：有独立的进程地址空间，有独立的PCB         分配资源的最小单位
+
+    线程：有独立的PCB、没有独立的进程地址空间       最小执行单位
+
+33. 线程资源
+
+    共享：文件描述符表、每种信号的处理方式、当前工作目录、用户ID和组ID、内存地址空间（.text/.data/.bss/heap/共享库）、共享全局变量
+    
+    独享：栈空间（内核栈、用户栈）、线程ID、errno变量、信号屏蔽字、调度优先级
+
+35. 线程控制原语
+
+    pthread_t pthread_self(void);
+
+    int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
+                          void *(*start_routine) (void *), void *arg);
+
+        成功：返回0；失败：返回errno
+
+        start_routine：函数指针，子线程
+
+36. void pthread_exit(void *retval);        退出当前线程
+
+    reutrn：返回到调用者的位置
+
+    exit：退出当前进程
+
+37. int pthread_cancel(pthread_t, thread);
+
+    杀死一个进程，需要到达一个取消点（保存点）
+
+        如果子线程没有到达取消点，则pthread_cancel无效
+
+        可以使用pthread_testcancel()手动添加取消点
+
+        被杀死的进程，返回-1，可以使用pthread_join接收
+
+38. 线程出错使用strerror()检查错误原因
+
+39. int pthread_detach(pthread_t thread);       设置线程分离
+
+    成功：0；失败：errno
+
+40. 线程属性
+
+    设置分离属性
+
+        pthread_attr_t attr             创建一个线程属性结构体变量
+
+        phtread_attr_init(&attr)        初始化线程属性
+
+        pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACH)       设置线程属性为分离态
+
+        pthread_create(&tid, &attr, tfn, NULL)          使用修改后的attr创建分离态的新线程
+
+        pthread_attr_destroy(&attr)                     销毁线程属性
+
+
+
+    
+
+
+
+
 
 
 
