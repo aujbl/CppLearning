@@ -715,14 +715,98 @@
 
 
 
+# 网络编程
+
+TCP通信流程
+
+    server:
+
+        1. socket()                 创建socket
+
+        2. bind()                   绑定服务器地址结构
+
+        3. listen()                 设置监听上限
+
+        4. accept()                 阻塞监听客户端连接
+
+        5. read(fd)                 读socket获取客户端数据
+
+        6. process()                业务流程
+
+        7. close()
+
+    client:
+
+        1. socket()                 创建socket
+
+        2. connect()                与服务器建立连接
+
+        3. write()                  写数据到socket
+
+        4. process()                   业务流程
+
+        5. close()
+
+
+
+多进程并发服务器
+
+    1. socket()                     创建监听套接字lfd
+
+    2. bind()                       绑定地址结构
+
+    3. listen()
+
+    4. accept()                     接受客户端连接请求
+
+    5. 子进程：关闭lfd，业务处理
     
+    6. 父进程：关闭cfd，注册信号处理函数：SIGCHLD，在回调函数中完成子进程回收
 
+多线程并发服务器
 
+    1. socket()                     创建监听套接字lfd
 
+    2. bind()                       绑定地址结构
 
+    3. listen()
 
+    4. accept()                     接受客户端连接请求
 
+TCP状态时序图：
 
+    1. 主动发起连接请求端：    
 
+        CLOSE -> 发送(SYN) -> 变为SYN_SEND -> 接受到(SYN/ACK) -> 发送ACK -> ESTABLISHED
+
+    2. 主动关闭连接请求端：
+
+        ESTABLISHED -> 发送FIN -> FIN_WAIT_1 -> 接收ACK -> FIN_WAIT_2（半关闭） -> 接收端发送FIN -> FIN_WAIT_2 -> 回发ACK ->TIME_WAIT（主动关闭程序一方会进入该状态） -> 等待2MSL -> CLOSE
+
+    3. 被动接收连接端：
+
+        CLOSE -> LISTEN -> 接收SYN -> LISTEN -> 发送SYN/ACK -> SYN_RECV -> 接收ACK -> ESTABLISHED
+
+    4. 被动关闭连接端
+
+        ESTABLISHED -> 接收FIN -> ESTABLISHED -> 发送ACK -> CLOSE_WAIT（对端此时处于半关闭状态） -> fastFIN -> LAST_ACK -> 接收ACK -> CLOSE
+
+2MSL：保证最后一个ACK被对端接收到，等待期间对端未收到ACK，将重发FIN
+
+端口复用函数：setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &(void *)&opt, sizeof(opt));
+
+半关闭：
+
+    通信双方，只有一端关闭通信
+
+    close(cfd)
+
+    shutdown(int fd, int how);
+
+        how:    SHUT_RD, SHUT_WR, SHUT_RDWR
+
+    shutdown在关闭多个文件描述符指向的文件时，会关闭全部文件描述符，close只关闭一个
+
+    
     
 
