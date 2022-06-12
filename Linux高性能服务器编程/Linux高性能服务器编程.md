@@ -808,5 +808,103 @@ TCP状态时序图：
     shutdown在关闭多个文件描述符指向的文件时，会关闭全部文件描述符，close只关闭一个
 
     
+创建事件
+
+    struct event *ev;
+
+    struct event *event_new(struct event_base, evutil_socket_t fd, short what, event_callback_fn cb, void *arg);
+
+        base:   event_base_new()返回值
+
+        fd: 绑定到event上的文件描述符
+
+        what:   对应的事件(r/w/e)
+
+        cb:     一旦事件满足监听条件，回调的函数
+
+        typedef void(*event_callback_fn)(evutil_socket_t fd, short, void *)
+
+        arg：回调函数的参数
+
+        返回值：成功创建的event
+
+添加事件到event_base
+
+    int event_add(struct event *ev, const timeval *tv);
+
+        ev: event_new()的返回值
+
+从event_base上摘下事件
+
+    int event_del(struct event *ev);
+
+未决：没有资格被处理
+
+非未决：有资格被处理，但尚未被处理
+
+带缓冲区的事件 bufferevent
+
+    #include <bufferevent.h>
+
+创建、销毁bufferevent
+
+    struct bufferevent *ev;
+
+    struct bufferevent *bufferevent_socket_new(struct event_base *base, evutil_socket_t fd, enum bufferevent_opentions option);
+
+        base:event_base
+
+        fd:封装到bufferevent内的fd
+
+        option：BEV_OPT_CLOSE_ON_FREE
+
+    返回：成功创建的bufferevent事件对象
+
+客户端
+
+    socket();   connect();
+
+    int bufferevent_socket_connect(struct bufferevent *bev, struct sockaddr *address, int addrlen);
+
+        bev: bufferevent 事件对象
+
+        address/len: 
+
+服务器：
+
+    socket(); bind(); listen(); accept()
+
+    struct evconnlistener *evconnlistener_new_bind(
+        struct event_base *base,
+        evconnlistener_cb cb,
+        void *ptr,
+        unsigned flags,
+        int backlog, 
+        const struct sockaddr *sa,
+        int socklen
+    )
+
+        base:       event_base
+
+        cb:         回调函数
+
+        ptr:        回调函数的参数
+
+        flags:      LER_OPT_CLOSE_ON_FREE | LEV_OPT_REUSEABLE
+
+        backlog:    最大监听数量
+
+        sa:         服务器自己的地址结构体
+
+        socklen：   结构体大小
+
+        返回值：
+
+            struct evconnlistener *listener；成功创建的监听器对象
+ 
     
+
+
+
+
 
